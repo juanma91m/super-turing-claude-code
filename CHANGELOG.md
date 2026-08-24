@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 — Fix: CLAUDE.md desactualizado post-Fase 6
+
+- `base/CLAUDE.md` seguía diciendo que el rollout a `higyrus-workspace` "no está migrado todavía" (texto de Fase 1, nunca actualizado tras completar Fase 6) y a los listados de agentes/comandos les faltaban `backend-python-developer`, `backend-typescript-developer`, `/code-review`, `/code-review-pr`, `/ticket-code-review`, y cualquier mención del MCP `atlassian-rovo` en la sección de Ticketing. Corregido: nueva sección "higyrus-workspace (rollout por proyecto)", listas completas, mención del MCP con su estado de auth.
+- Se re-testeó en vivo el guardrail `.env*`: un comando Bash que referenciaba un `.env` fue bloqueado por `env-guard.sh` vía `PreToolUse`, contradiciendo el hallazgo de 2026-08-21 ("los hooks no se invocan en este hosting"). La causa más probable es que ese hallazgo se tomó antes de corregir el bug de schema de `hooks.UserPromptSubmit` (1.0.1) — no una limitación permanente del entorno. Sección de guardrail de secretos actualizada para reflejar esto sin sobre-confiar (falta re-testear `sensitive-reference-guard.sh` y `engram-memory-hints.sh` puntualmente).
+
 ## 1.1.1 — MCP atlassian-rovo movido a addons/ticketing
 
 - `atlassian-rovo.json` vivía en `addons/higyrus-workspace/mcp/` (ubicación arbitraria, quedó ahí solo porque se creó durante el trabajo de fase 6). Se movió a `addons/ticketing/mcp/`, que es su dueño temático real (integración Jira/Confluence). `install.sh` actualizado.

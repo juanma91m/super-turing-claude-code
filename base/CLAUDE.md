@@ -27,7 +27,7 @@ Este archivo se instala en `~/.claude/CLAUDE.md` y convive con cualquier `CLAUDE
 
 Hay un hook `PreToolUse` instalado (`~/.claude/hooks/env-guard.sh`) que bloquea lectura/edición de archivos `.env*` (excepto `.env.example`) y comandos Bash que los referencien.
 
-**Estado verificado (2026-08-21):** en sesiones que corren dentro de este entorno de hosting (child session vía socket de mensajería, `CLAUDE_CODE_CHILD_SESSION=1`), confirmé con un probe de debug que Claude Code **no invoca los hooks `PreToolUse`** — ni para `Read` ni para `Bash` — aunque el script y el registro en `settings.json` son correctos (probados exit-code 2 de forma standalone). `permissions.allow/ask/deny` sí se respeta en este mismo entorno (confirmado en vivo con un `rm` real que pidió confirmación). No confirmé todavía si los hooks funcionan en una sesión de terminal `claude` plana, fuera de este hosting.
+**Estado verificado (2026-08-23):** contradice el hallazgo anterior (2026-08-21) — en esta misma clase de sesión de hosting, un comando Bash real que referenciaba un `.env` fue bloqueado en vivo por `PreToolUse:Bash hook error: [env-guard.sh]`. Los hooks `PreToolUse` **sí se invocan** en este entorno hoy; lo que cambió en el medio fue el fix del bug de schema de `hooks.UserPromptSubmit` en `~/.claude/settings.json` (ver CHANGELOG 1.0.1) — es razonable que haya sido la causa real del comportamiento roto anterior, no una limitación del entorno de hosting en sí. No se re-testeó todavía `sensitive-reference-guard.sh` ni `engram-memory-hints.sh` puntualmente, pero dado que comparten el mismo mecanismo `PreToolUse`/`UserPromptSubmit` ya corregido, no hay motivo para seguir tratándolos como no confiables.
 
 **Mientras esto no esté resuelto, tratá esto como política de comportamiento, no como garantía técnica**: no leas ni edites `.env` reales aunque el hook no te lo impida activamente — usá workflows explícitos que no expongan el secreto crudo (variables ya cargadas en el proceso, valores redactados, `.env.example` como referencia de forma). Lo mismo aplica al hook `sensitive-reference-guard.sh` (`.ssh`, `.gnupg`, credenciales AWS/gh, claves privadas, `/etc/shadow`/`sudoers`) y al hook `engram-memory-hints.sh` (nudge de "remember"): puede que no se disparen solos en este entorno — no asumas que sí.
 
@@ -49,6 +49,8 @@ Delegar vía el Agent tool cuando la especialización reduzca riesgo o aumente f
 - **`agent-design`** (opus): diseña y mantiene subagentes, skills y comandos de este mismo stack Claude Code. Usarlo cuando haya que hacer crecer el stack, no para trabajo diario.
 - **`code-inspector`** (sonnet): inspecciona el flujo actual del código, entry points y componentes involucrados, sin editar ni ejecutar cambios riesgosos.
 - **`backend-java-developer`** (sonnet): implementador de backend Java enterprise (servicios, APIs, persistencia, integraciones, cache, concurrencia).
+- **`backend-python-developer`** (sonnet): implementador de backend Python enterprise (FastAPI, Django, Flask u otro framework real del proyecto).
+- **`backend-typescript-developer`** (sonnet): implementador de backend Node.js/TypeScript enterprise (NestJS, Express, Fastify u otro framework real del proyecto).
 - **`frontend-web-developer`** (sonnet): implementador de capa de presentación web (Vaadin, React, Angular u otro stack real del proyecto).
 - **`ui-web-designer`** (sonnet): diseño de interfaces y flujos web (UX, Material UI); no implementa código.
 - **`dev-test`** (sonnet): crea/ajusta tests y ejecuta validación técnica final con evidencia reproducible.
@@ -75,7 +77,8 @@ Solo aplica si el proyecto activo usa explícitamente este workflow (no lo fuerc
 - si el proyecto usa el patrón `tmp/<ticket>/verdict.md` → implementación → `tmp/<ticket>/result-dev.md`, escribí ahí solo cuando ese workflow esté habilitado (skill `workflow-ticket-handoff`),
 - si el usuario pide scaffolding de una capa de agentes específica de proyecto y el repo ya adopta este addon, preferí sus templates/helpers de overlay antes que inventar estructura nueva,
 - Jira es de solo lectura vía `bash ~/.config/opencode/scripts/jira_helper.sh <issue|search|context|attachments|dump> ...` (necesita `JIRA_BASE_URL`/`JIRA_EMAIL`/`JIRA_API_TOKEN` en el `.env` del proyecto) — nunca asumas acceso si esas credenciales no están configuradas; la escritura del wrapper (`note`/`write`/`verdict`/`mkdir`/`delete`) es siempre local, sandboxeada a `tmp/<ticket>/`, nunca toca Jira.
-- Comandos: `/ticket-plan`, `/ticket-refresh`, `/ticket-verdict`, `/ticket-implement`, `/ticket-validate`.
+- MCP `atlassian-rovo` (remoto, OAuth): search/fetch de solo lectura sobre Jira/Confluence, alternativa a `jira_helper.sh` cuando conviene una consulta puntual sin shell. Requiere autenticación OAuth interactiva (`/mcp` → `atlassian-rovo` → login) antes de poder usarse; si aparece "Needs authentication", pedile al usuario que autentique, no asumas acceso.
+- Comandos: `/ticket-plan`, `/ticket-refresh`, `/ticket-verdict`, `/ticket-implement`, `/ticket-validate`, `/ticket-code-review` (delega en `code-reviewer` para revisión ligada a un ticket).
 
 ## Documents (Quarto/D2, addon opcional)
 
@@ -102,11 +105,17 @@ Esta máquina tiene más de una identidad GitHub conviviendo (`juanma91m` person
 
 ## Comandos disponibles (`~/.claude/commands/`)
 
-`/check-code-patterns`, `/find-code-pattern`, `/memory-init`, `/knowledge-index-global`, `/knowledge-search`, `/knowledge-status`, `/knowledge-store-global`, `/codegraph-init`, `/codegraph-status`, `/codegraph-sync`, `/codegraph-reindex`, `/ticket-plan`, `/ticket-refresh`, `/ticket-verdict`, `/ticket-implement`, `/ticket-validate`, `/crear-diagrama`, `/publicar-documento`.
+`/check-code-patterns`, `/find-code-pattern`, `/code-review`, `/code-review-pr`, `/memory-init`, `/knowledge-index-global`, `/knowledge-search`, `/knowledge-status`, `/knowledge-store-global`, `/codegraph-init`, `/codegraph-status`, `/codegraph-sync`, `/codegraph-reindex`, `/ticket-plan`, `/ticket-refresh`, `/ticket-verdict`, `/ticket-implement`, `/ticket-validate`, `/ticket-code-review`, `/crear-diagrama`, `/publicar-documento`.
 
-## Fuera de alcance todavía (roadmap, no instalado en esta fase)
+## higyrus-workspace (rollout por proyecto)
 
-El rollout a `higyrus-workspace` **no está migrado todavía** — no asumas que existen overlays por proyecto (`.claude/` en cada repo de AUNESA) hasta que se ejecute esa fase. El equivalente OpenCode de todo esto sigue intacto y funcionando en `~/.config/opencode/` y en cada proyecto si hace falta usarlo mientras tanto.
+Los 9 proyectos de `~/TRABAJO/AUNE/higyrus-workspace/` (higyrus, market-data, virtual-broker, keycloak, higyrus-gateway, aggregator, perfil-inversor, documento-api, oms-api) ya tienen rollout completo: `CLAUDE.md` propio (contexto de stack/dominio, siempre prioritario sobre este archivo global) y `.claude/skills/` con las skills de dominio del proyecto (symlinks a `.opencode/skills/`, un solo lugar de verdad con OpenCode). No hace falta `.claude/agents/` ni `.claude/commands/` por proyecto — los roles y comandos ya son globales.
+- `aune-code-review-eficiente` y `aune-higyrus-workspace-ecosystem` viven per-proyecto (deliberadamente no globales — son contenido específico de AUNE, sin un home genérico razonable).
+- `higyrus-AN` es un clon duplicado/desactualizado de `higyrus`, documentado pero explícitamente fuera de alcance (no se toca).
+
+## Fuera de alcance (sin equivalente necesario o no solicitado)
+
+`agent-identity`, `opencode-notify`, `opencode-scheduler`, `opencode-worktree`, `background-agents` de OpenCode no se portaron (sin equivalente necesario, o cubiertos nativamente por Claude Code). Si en el futuro hiciera falta alguno, evaluarlo puntualmente antes de asumir que ya está cubierto.
 
 ## Estilo de respuesta
 
