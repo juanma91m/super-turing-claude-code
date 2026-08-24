@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/memoria-durable-opencode/SKILL.md

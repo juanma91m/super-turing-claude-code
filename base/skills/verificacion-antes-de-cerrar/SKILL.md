@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/verificacion-antes-de-cerrar/SKILL.md

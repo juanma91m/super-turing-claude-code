@@ -1,0 +1,1 @@
+{"command": "npx", "args": ["-y", "@playwright/mcp@latest", "--headless", "--executable-path", "__HOME__/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome"]}

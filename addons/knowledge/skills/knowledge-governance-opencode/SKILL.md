@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/knowledge-governance-opencode/SKILL.md

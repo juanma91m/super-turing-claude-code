@@ -1,0 +1,167 @@
+{
+  "name": "super-turing-claude-code",
+  "phase": 6,
+  "version": "1.0.0",
+  "description": "Ecosistema super-turing-claude-code completo (fases 1-6): puerto del stack core + Knowledge, CodeGraph, Ticketing, Documents, github-accounts-local, y rollout a higyrus-workspace, con de-duplicación cross-stack vía symlinks a los archivos canónicos de super-turing-opencode donde el contenido es compartido.",
+  "sourceEcosystem": "super-turing-opencode",
+  "targetDeployDir": "~/.claude",
+  "managedFiles": {
+    "base/agents": [
+      "planner.md",
+      "code-reviewer.md",
+      "reviewer.md",
+      "agent-design.md",
+      "code-inspector.md",
+      "backend-java-developer.md",
+      "frontend-web-developer.md",
+      "ui-web-designer.md",
+      "dev-test.md",
+      "merge-conflict-resolver.md"
+    ],
+    "base/commands": [
+      "check-code-patterns.md",
+      "find-code-pattern.md"
+    ],
+    "base/skills": [
+      "analisis-tecnico-evidencia",
+      "cambio-seguro-enterprise",
+      "contratos-api-y-datos",
+      "debugging-sistematico",
+      "diseno-agentes-claude-code",
+      "diseno-ui-web",
+      "implementacion-frontend-web",
+      "investigacion-web",
+      "mentoria-tecnica-opencode",
+      "performance-cache-concurrencia",
+      "revision-por-etapas",
+      "sdd-tdd-bdd-pragmatico",
+      "stitch-playwright-ui-opencode",
+      "verificacion-antes-de-cerrar",
+      "code-review-branch-to-branch"
+    ],
+    "base/hooks": [
+      "env-guard.sh",
+      "sensitive-reference-guard.sh",
+      "hooks.snippet.json"
+    ],
+    "base/permissions": [
+      "permission-autopilot.snippet.json"
+    ],
+    "base/CLAUDE.md": true,
+    "base/mcp": [
+      "context7.json",
+      "playwright.json",
+      "stitch.json"
+    ],
+    "addons/knowledge/agents": [
+      "knowledge-curator.md",
+      "knowledge-reader.md"
+    ],
+    "addons/knowledge/commands": [
+      "memory-init.md",
+      "knowledge-index-global.md",
+      "knowledge-search.md",
+      "knowledge-status.md",
+      "knowledge-store-global.md"
+    ],
+    "addons/knowledge/skills": [
+      "knowledge-governance-opencode",
+      "memoria-durable-opencode",
+      "memoria-engram-opencode"
+    ],
+    "addons/knowledge/hooks": [
+      "engram-memory-hints.sh",
+      "hooks.snippet.json"
+    ],
+    "addons/knowledge/mcp": [
+      "engram.json"
+    ],
+    "addons/codegraph/commands": [
+      "codegraph-init.md",
+      "codegraph-status.md",
+      "codegraph-sync.md",
+      "codegraph-reindex.md"
+    ],
+    "addons/codegraph/skills": [
+      "codegraph-analisis-estructural"
+    ],
+    "addons/codegraph/mcp": [
+      "codegraph.json"
+    ],
+    "addons/ticketing/commands": [
+      "ticket-plan.md",
+      "ticket-refresh.md",
+      "ticket-verdict.md",
+      "ticket-implement.md",
+      "ticket-validate.md"
+    ],
+    "addons/ticketing/skills": [
+      "workflow-ticket-handoff"
+    ],
+    "addons/ticketing/mcp": [
+      "atlassian-rovo.json"
+    ],
+    "addons/documents/commands": [
+      "crear-diagrama.md",
+      "publicar-documento.md"
+    ],
+    "addons/documents/skills": [
+      "diagramacion-tecnica",
+      "publicacion-documental"
+    ],
+    "addons/github-accounts-local/skills": [
+      "github-cuentas-multiples"
+    ],
+    "addons/higyrus-workspace/scripts": [
+      "sync-project-overlay.sh"
+    ]
+  },
+  "notDeployed": {
+    "reason": "Archivos machine-local o generados; nunca se copian ni se versionan tal cual.",
+    "items": [
+      "~/.claude/settings.json (solo se mergea la clave 'hooks', el resto queda intacto)",
+      "~/.claude.json (mcpServers se registra vía CLI 'claude mcp add-json', nunca edición manual)",
+      "~/.claude/projects, ~/.claude/sessions, ~/.claude/credentials.json, ~/.claude/history.jsonl"
+    ]
+  },
+  "reusedNotCopied": {
+    "reason": "Scripts/binarios/datos que siguen siendo propiedad de super-turing-opencode-knowledge y engram; los comandos/agentes de este repo los invocan por ruta absoluta sin duplicarlos.",
+    "items": [
+      "~/.config/opencode/scripts/knowledge_search.sh",
+      "~/.config/opencode/scripts/knowledge_status.sh",
+      "~/.config/opencode/scripts/knowledge_store.sh",
+      "~/.config/opencode/scripts/knowledge_seed_global.sh",
+      "~/.opencode/bin/engram",
+      "~/.engram/engram.db"
+    ]
+  },
+  "outOfScopeThisPhase": [],
+  "machineLocalOnly": {
+    "reason": "No promover a otra máquina sin reparametrizar — describe identidades/aliases específicos de esta instalación.",
+    "items": [
+      "addons/github-accounts-local/skills/github-cuentas-multiples"
+    ]
+  },
+  "crossStackSymlinks": {
+    "reason": "Un solo lugar de verdad: estos archivos de Claude Code NO son copias, son symlinks reales hacia los archivos canónicos de OpenCode. Editar el archivo de OpenCode actualiza Claude Code sin correr ningún sync.",
+    "globalSkillsSymlinkedToOpencode": [
+      "diagramacion-tecnica", "publicacion-documental", "github-cuentas-multiples",
+      "revision-por-etapas", "sdd-tdd-bdd-pragmatico", "memoria-durable-opencode",
+      "workflow-ticket-handoff", "memoria-engram-opencode", "knowledge-governance-opencode",
+      "debugging-sistematico", "verificacion-antes-de-cerrar",
+      "aune-code-review-eficiente", "aune-higyrus-workspace-ecosystem"
+    ],
+    "perProjectSkillsSymlinkedToOpencode": "Todas las skills de dominio en <project>/.claude/skills/ de los 9 proyectos de higyrus-workspace son symlinks a <project>/.opencode/skills/ — generadas por addons/higyrus-workspace/scripts/sync-project-overlay.sh.",
+    "note": "Excluida deliberadamente: diseno-agentes-opencode/diseno-agentes-claude-code — el contenido diverge genuinamente (habla de subagentes Claude Code, no agentes OpenCode)."
+  },
+  "opencodeSideChangesThisPhase": {
+    "reason": "Primera vez que este repo edita ~/.config/opencode y los overlays de higyrus-workspace — siempre aditivo (frontmatter agregado, nunca contenido borrado) o consolidación de duplicados exactos a una sola fuente, autorizado explícitamente por el usuario.",
+    "items": [
+      "Frontmatter YAML agregado a ~14 skills de higyrus (antes sin frontmatter) en super-turing-opencode-higyrus y en el deploy",
+      "Frontmatter agregado o wording reconciliado en 8 skills globales (revision-por-etapas, sdd-tdd-bdd-pragmatico, memoria-durable-opencode, workflow-ticket-handoff, memoria-engram-opencode, knowledge-governance-opencode, debugging-sistematico, verificacion-antes-de-cerrar)",
+      "aune-code-review-eficiente y aune-higyrus-workspace-ecosystem promovidas a ~/.config/opencode/skills/ (global), reemplazando 9 copias por proyecto por symlinks",
+      "ticket-code-review.md promovido a ~/.config/opencode/commands/ (global), reemplazando 9 copias por proyecto por symlinks",
+      "atlassian-rovo promovido a ~/.config/opencode/opencode.json (global, mcp), removido de los 9 opencode.json de proyecto (verificado con 'opencode debug config' que el merge global+proyecto sigue resolviendo el MCP)"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/sdd-tdd-bdd-pragmatico/SKILL.md

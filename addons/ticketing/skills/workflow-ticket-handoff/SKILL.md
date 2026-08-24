@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/workflow-ticket-handoff/SKILL.md

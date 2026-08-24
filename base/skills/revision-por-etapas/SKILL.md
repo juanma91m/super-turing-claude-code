@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/revision-por-etapas/SKILL.md

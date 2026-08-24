@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/diagramacion-tecnica/SKILL.md

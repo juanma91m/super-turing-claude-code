@@ -1,0 +1,10 @@
+{
+  "command": "__HOME__/.local/share/super-turing-opencode-codegraph/runtime/node_modules/.bin/codegraph",
+  "args": ["serve", "--mcp"],
+  "env": {
+    "CODEGRAPH_MCP_TOOLS": "explore",
+    "CODEGRAPH_TELEMETRY": "0",
+    "CODEGRAPH_NO_UPDATE_CHECK": "1",
+    "DO_NOT_TRACK": "1"
+  }
+}

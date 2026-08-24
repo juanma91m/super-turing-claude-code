@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/memoria-engram-opencode/SKILL.md

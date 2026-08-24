@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__CLAUDE_HOME__/hooks/engram-memory-hints.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

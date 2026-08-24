@@ -1,0 +1,1 @@
+/home/jmagnaterra/.config/opencode/skills/github-cuentas-multiples/SKILL.md
