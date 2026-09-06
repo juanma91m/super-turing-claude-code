@@ -98,6 +98,13 @@
       "Bash(sh -c *)",
       "Bash(zsh -c *)",
       "Bash(eval *)"
+    ],
+    "deny": [
+      "mcp__atlassian-rovo__add*",
+      "mcp__atlassian-rovo__create*",
+      "mcp__atlassian-rovo__edit*",
+      "mcp__atlassian-rovo__transition*",
+      "mcp__atlassian-rovo__update*"
     ]
   }
 }

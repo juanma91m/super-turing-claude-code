@@ -77,7 +77,7 @@ Solo aplica si el proyecto activo usa explícitamente este workflow (no lo fuerc
 - si el proyecto usa el patrón `tmp/<ticket>/verdict.md` → implementación → `tmp/<ticket>/result-dev.md`, escribí ahí solo cuando ese workflow esté habilitado (skill `workflow-ticket-handoff`),
 - si el usuario pide scaffolding de una capa de agentes específica de proyecto y el repo ya adopta este addon, preferí sus templates/helpers de overlay antes que inventar estructura nueva,
 - Jira es de solo lectura vía `bash ~/.config/opencode/scripts/jira_helper.sh <issue|search|context|attachments|dump> ...` (necesita `JIRA_BASE_URL`/`JIRA_EMAIL`/`JIRA_API_TOKEN` en el `.env` del proyecto) — nunca asumas acceso si esas credenciales no están configuradas; la escritura del wrapper (`note`/`write`/`verdict`/`mkdir`/`delete`) es siempre local, sandboxeada a `tmp/<ticket>/`, nunca toca Jira.
-- MCP `atlassian-rovo` (remoto, OAuth): search/fetch de solo lectura sobre Jira/Confluence, alternativa a `jira_helper.sh` cuando conviene una consulta puntual sin shell. Requiere autenticación OAuth interactiva (`/mcp` → `atlassian-rovo` → login) antes de poder usarse; si aparece "Needs authentication", pedile al usuario que autentique, no asumas acceso.
+- MCP `atlassian-rovo` (remoto, OAuth): search/fetch de solo lectura sobre Jira/Confluence, alternativa a `jira_helper.sh` cuando conviene una consulta puntual sin shell. `permissions.deny` retira del contexto sus tools `add*`, `create*`, `edit*`, `transition*` y `update*`. Requiere autenticación OAuth interactiva (`/mcp` → `atlassian-rovo` → login) antes de poder usarse; si aparece "Needs authentication", pedile al usuario que autentique, no asumas acceso.
 - Comandos: `/ticket-plan`, `/ticket-refresh`, `/ticket-verdict`, `/ticket-implement`, `/ticket-validate`, `/ticket-code-review` (delega en `code-reviewer` para revisión ligada a un ticket).
 
 ## Documents (Quarto/D2, addon opcional)
@@ -101,7 +101,7 @@ Esta máquina tiene más de una identidad GitHub conviviendo (`juanma91m` person
 
 ## Skills disponibles (`~/.claude/skills/`)
 
-`analisis-tecnico-evidencia`, `cambio-seguro-enterprise`, `contratos-api-y-datos`, `debugging-sistematico`, `diseno-agentes-claude-code`, `diseno-ui-web`, `implementacion-frontend-web`, `investigacion-web`, `mentoria-tecnica-opencode`, `performance-cache-concurrencia`, `revision-por-etapas`, `sdd-tdd-bdd-pragmatico`, `stitch-playwright-ui-opencode`, `verificacion-antes-de-cerrar`, `code-review-branch-to-branch`, `knowledge-governance-opencode`, `memoria-durable-opencode`, `memoria-engram-opencode`, `codegraph-analisis-estructural`, `workflow-ticket-handoff`, `diagramacion-tecnica`, `publicacion-documental`, `github-cuentas-multiples`.
+`analisis-tecnico-evidencia`, `cambio-seguro-enterprise`, `contratos-api-y-datos`, `debugging-sistematico`, `diseno-agentes-claude-code`, `diseno-ui-web`, `investigacion-web`, `mentoria-tecnica-opencode`, `performance-cache-concurrencia`, `revision-por-etapas`, `sdd-tdd-bdd-pragmatico`, `stitch-playwright-ui-opencode`, `verificacion-antes-de-cerrar`, `code-review-branch-to-branch`, `knowledge-governance-opencode`, `memoria-durable-opencode`, `memoria-engram-opencode`, `codegraph-analisis-estructural`, `workflow-ticket-handoff`, `diagramacion-tecnica`, `publicacion-documental`, `github-cuentas-multiples`.
 
 ## Comandos disponibles (`~/.claude/commands/`)
 

@@ -34,7 +34,6 @@ Límites:
 
 Skills sugeridas:
 - `diseno-ui-web`
-- `implementacion-frontend-web`
 - `stitch-playwright-ui-opencode`
 - `analisis-tecnico-evidencia`
 - `cambio-seguro-enterprise`

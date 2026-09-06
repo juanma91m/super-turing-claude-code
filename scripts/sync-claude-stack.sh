@@ -23,7 +23,9 @@ RETENTION=5
 
 TO_CREATE=()
 TO_UPDATE=()
+TO_REMOVE=()
 UNCHANGED=()
+OBSOLETE_TARGETS=()
 
 usage() {
   cat <<'EOF'
@@ -77,6 +79,18 @@ collect_pairs "addons/documents/skills" "SKILL.md" "skills"
 collect_pairs "addons/github-accounts-local/skills" "SKILL.md" "skills"
 collect_pairs "addons/higyrus-workspace/skills" "SKILL.md" "skills"
 MANAGED_PAIRS+=("base/CLAUDE.md|CLAUDE.md")
+
+mapfile -t OBSOLETE_TARGETS < <(
+  python3 - "$SOURCE_DIR/STACK-MANIFEST.json" <<'PY'
+import json
+import pathlib
+import sys
+
+data = json.loads(pathlib.Path(sys.argv[1]).read_text())
+for item in data.get("obsoleteTargets", []):
+    print(item)
+PY
+)
 
 # --- snippets a mergear en settings.json (claves "hooks" y "permissions",
 # preservando cualquier otra clave existente, ej. "theme").
@@ -229,10 +243,29 @@ PYEOF
   log "hooks/permissions mergeados en $settings (resto de las claves preservado)"
 }
 
+remove_obsolete_targets() {
+  local rel target ts dest
+  for rel in "${OBSOLETE_TARGETS[@]}"; do
+    target="$TARGET_DIR/$rel"
+    if [[ ! -e "$target" && ! -L "$target" ]]; then
+      continue
+    fi
+    TO_REMOVE+=("$rel")
+    (( STATUS_ONLY )) && continue
+    (( DRY_RUN )) && { log "[dry-run] retirar obsolete $rel"; continue; }
+    ts="$(date -u +%Y%m%dT%H%M%SZ)"
+    dest="$BACKUP_ROOT/$ts/$rel"
+    mkdir -p "$(dirname "$dest")"
+    cp -pR "$target" "$dest"
+    rm -rf "$target"
+  done
+}
+
 for pair in "${MANAGED_PAIRS[@]}"; do
   sync_file "$pair"
 done
 
+remove_obsolete_targets
 merge_settings_snippets
 
 if (( ! DRY_RUN && ! STATUS_ONLY )); then
@@ -240,6 +273,7 @@ if (( ! DRY_RUN && ! STATUS_ONLY )); then
   prune_backups
 fi
 
-log "crear: ${#TO_CREATE[@]}  actualizar: ${#TO_UPDATE[@]}  sin cambios: ${#UNCHANGED[@]}"
+log "crear: ${#TO_CREATE[@]}  actualizar: ${#TO_UPDATE[@]}  retirar: ${#TO_REMOVE[@]}  sin cambios: ${#UNCHANGED[@]}"
 if (( ${#TO_CREATE[@]} > 0 )); then log "  + ${TO_CREATE[*]}"; fi
 if (( ${#TO_UPDATE[@]} > 0 )); then log "  ~ ${TO_UPDATE[*]}"; fi
+if (( ${#TO_REMOVE[@]} > 0 )); then log "  - ${TO_REMOVE[*]}"; fi

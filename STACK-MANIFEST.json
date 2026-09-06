@@ -1,7 +1,7 @@
 {
   "name": "super-turing-claude-code",
   "phase": 6,
-  "version": "1.0.0",
+  "version": "1.1.3",
   "description": "Ecosistema super-turing-claude-code completo (fases 1-6): puerto del stack core + Knowledge, CodeGraph, Ticketing, Documents, github-accounts-local, y rollout a higyrus-workspace, con de-duplicación cross-stack vía symlinks a los archivos canónicos de super-turing-opencode donde el contenido es compartido.",
   "sourceEcosystem": "super-turing-opencode",
   "targetDeployDir": "~/.claude",
@@ -29,7 +29,6 @@
       "debugging-sistematico",
       "diseno-agentes-claude-code",
       "diseno-ui-web",
-      "implementacion-frontend-web",
       "investigacion-web",
       "mentoria-tecnica-opencode",
       "performance-cache-concurrencia",
@@ -116,6 +115,9 @@
       "sync-project-overlay.sh"
     ]
   },
+  "obsoleteTargets": [
+    "skills/implementacion-frontend-web"
+  ],
   "notDeployed": {
     "reason": "Archivos machine-local o generados; nunca se copian ni se versionan tal cual.",
     "items": [

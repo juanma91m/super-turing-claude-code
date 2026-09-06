@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.3 — Poda de skill redundante
+
+- Se retira `implementacion-frontend-web`: repetía la responsabilidad ya definida en `frontend-web-developer`; `diseno-ui-web` conserva el criterio visual reusable.
+- `sync-claude-stack.sh` incorpora `obsoleteTargets` para respaldar y retirar assets que dejaron de pertenecer al stack.
+- La política global niega por nombre las tools de escritura `add*`, `create*`, `edit*`, `transition*` y `update*` del MCP `atlassian-rovo`; las lecturas permanecen disponibles.
+- `STACK-MANIFEST.json` se alinea con la versión real del changelog y sube a `1.1.3`.
+
 ## 1.1.2 — Fix: CLAUDE.md desactualizado post-Fase 6
 
 - `base/CLAUDE.md` seguía diciendo que el rollout a `higyrus-workspace` "no está migrado todavía" (texto de Fase 1, nunca actualizado tras completar Fase 6) y a los listados de agentes/comandos les faltaban `backend-python-developer`, `backend-typescript-developer`, `/code-review`, `/code-review-pr`, `/ticket-code-review`, y cualquier mención del MCP `atlassian-rovo` en la sección de Ticketing. Corregido: nueva sección "higyrus-workspace (rollout por proyecto)", listas completas, mención del MCP con su estado de auth.
