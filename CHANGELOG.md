@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.4 — Aislamiento de tooling UI
+
+- Stitch queda bajo ownership operativo exclusivo de `ui-web-designer`; frontend y el asistente principal deben derivar allí el trabajo visual.
+- Playwright se declara para `planner`, `frontend-web-developer`, `ui-web-designer` y `dev-test`, manteniendo su uso condicionado a evidencia web real.
+- Se preserva el MCP Stitch global porque Claude Code no ofrece aislamiento técnico equivalente al gating por agente de OpenCode; el límite del asistente principal queda reforzado por política.
+
 ## 1.1.3 — Poda de skill redundante
 
 - Se retira `implementacion-frontend-web`: repetía la responsabilidad ya definida en `frontend-web-developer`; `diseno-ui-web` conserva el criterio visual reusable.
