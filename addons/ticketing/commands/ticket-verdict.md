@@ -11,7 +11,9 @@ Objetivo:
 - sintetizar el estado final del plan,
 - dejar `tmp/$ARGUMENTS/verdict.md` actualizado cuando el proyecto usa el patrón de handoff (podés escribirlo con `bash ~/.config/opencode/scripts/jira_helper.sh verdict $ARGUMENTS --content "..."`, que sandboxea la escritura a `tmp/$ARGUMENTS/`).
 
-Secciones obligatorias:
+Si el handoff local no está habilitado, entregá el veredicto en la respuesta sin crear `tmp/` ni habilitarlo por el identificador o este comando. Rovo es complemento solo si falta contexto material y el caller tiene acceso aprobado; pasá su evidencia destilada al planner sin exigirle una tool que no tenga.
+
+Secciones del veredicto (archivo solo con handoff activo):
 - Problema / Objetivo
 - Alcance
 - Estado actual

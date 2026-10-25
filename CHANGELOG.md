@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+- se alinean las correcciones de workflow de OpenCode: salida sin formulario ritual y comandos que no habilitan handoff por identificador ni exigen Rovo a un rol sin la tool. Se conservan allowlists/modelos y el formato nativo de delegación.
+- las cinco reparaciones de metadata globales se reciben por los symlinks existentes, sin copias nuevas ni cambio de MCPs/hooks/settings.
+- se explicita la precedencia del storage local de review y la lectura de contratos requeridos con `Read` cuando el rol no dispone de `Skill`; no se agregan tools ni se cambian presupuestos o procedimiento formal de review.
+
+- se alinean los principios comunes, seguridad y estilo de `base/CLAUDE.md` con el nuevo `AGENTS.md` de OpenCode, conservando el rol base de Claude y todos sus bloques operativos de hooks, permisos, subagentes y addons.
+- no se modifican controles técnicos ni se portan herramientas o agentes entre runtimes; la instalación activa recibe la guía desde su fuente canónica mediante despliegue acotado.
+- en una ampliación explícita del punto 1 se poda la guía Claude: conserva rol base, principios, seguridad y contratos breves, y retira catálogos duplicados, modelos, historia de hooks y rollout de productos del contexto residente.
+- el detalle operativo y la matriz de responsabilidades quedan en README como consulta on-demand, sin importación automática; se mantienen prompts, metadata, hooks, permisos, scripts y MCPs. Se corrige la explicación de convivencia global/local, sin cambiar el loader.
+
 ## 1.1.4 — Aislamiento de tooling UI
 
 - Stitch queda bajo ownership operativo exclusivo de `ui-web-designer`; frontend y el asistente principal deben derivar allí el trabajo visual.

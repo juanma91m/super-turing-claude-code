@@ -50,4 +50,4 @@ Entrega esperada:
 - cambio implementado,
 - riesgos o validaciones pendientes,
 - evidencia de validación,
-- si venís por delegación o con handoff explícito: `Contexto recibido: suficiente|ajustado|insuficiente`, `Faltó: ...`, `Sobró: ...`.
+- Señalá solo faltantes de contexto que afecten el resultado.

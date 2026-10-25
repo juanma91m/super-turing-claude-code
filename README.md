@@ -4,7 +4,80 @@ Source of truth versionado para la migración del ecosistema `super-turing-openc
 
 **No reemplaza a OpenCode.** El deploy en `~/.config/opencode/` sigue intacto y funcionando; este repo solo agrega la capa equivalente del lado Claude Code, de forma aditiva.
 
-## Estado: completo (Fases 1-6)
+## Guía residente y operación actual
+
+`base/CLAUDE.md` se despliega en `~/.claude/CLAUDE.md`. Contiene el rol base,
+criterios comunes, seguridad y reglas breves de uso; las instrucciones locales lo
+complementan. No es un catálogo manual ni un historial de instalación. Se alinea
+en principios con el AGENTS.md OpenCode, pero no copia sus roles ni herramientas.
+
+Este README es documentación de consulta, no una importación desde la guía:
+no leerlo al inicio de cada tarea ni referenciarlo mediante `@` desde CLAUDE.md.
+
+### Inventario y descubrimiento
+
+- Agentes: archivos de `base/agents/`, `addons/knowledge/agents/` y sus destinos
+  `~/.claude/agents/`; `name`, `description`, `model` y `tools` son su contrato
+  real. La descripción orienta la elección sin repetir el catálogo en CLAUDE.md.
+- Skills: metadata de `~/.claude/skills/`; cuerpo y referencias se consultan cuando
+  corresponden. Comandos: archivos de `~/.claude/commands/`, con descripción y
+  argumentos propios. No copiar sus listas ni modelos a la guía global.
+- Los roles de revisión siguen separados: `code-reviewer` revisa trabajo de
+  terceros; `reviewer`, el desarrollo propio. Sus prompts preservan límites e
+  informes. La sesión principal conserva liderazgo/implementación; no depende
+  de un agente primario `master-dev` portado de OpenCode.
+- El storage local de review tiene precedencia sobre el default global. Los
+  contratos requeridos pueden leerse con `Read` desde `~/.claude/skills/` cuando
+  `Skill` no está en las tools del rol; no ampliar allowlists para resolver una
+  referencia legible ni asumir MCPs heredados.
+- En la CLI inspeccionada, `claude agents` administra sesiones background: no
+  confundirlo con el inventario de definiciones ni asumir que prueba su carga.
+- No afirmar descubrimiento de un asset solo porque existe un archivo. Se
+  verificaron metadata de agentes y de las skills documentales/GitHub usadas por
+  la guía. `workflow-ticket-handoff` aún carece de frontmatter: los comandos de
+  tickets mantienen el handoff explícito; su metadata se revisará en el punto 2
+  del plan de simplificación, no se corrige como efecto lateral de esta poda.
+
+### Controles y contratos que no desaparecen al acortar la guía
+
+| Capacidad | Fuente del detalle / límite |
+|---|---|
+| Secretos | `base/hooks/env-guard.sh` bloquea `.env*` salvo `.env.example`; el deber de no exponerlos sigue explícito aunque un hook no se ejecute |
+| Acceso sensible | `base/hooks/sensitive-reference-guard.sh` pide confirmación para rutas sensibles; no es una autorización automática ni un bloqueo total |
+| Operaciones riesgosas | Patrones `permissions.ask` en `base/permissions/permission-autopilot.snippet.json`; preservar `ask`/`deny`, no duplicar sus listas en el prompt |
+| Engram/Qdrant | `addons/knowledge/agents/` y skills de conocimiento; memoria durable vía herramientas disponibles, corpus solo mediante wrappers aprobados |
+| CodeGraph | `addons/codegraph/skills/codegraph-analisis-estructural/SKILL.md` y comandos de lifecycle; índices por root/worktree, init/reindex explícitos |
+| Jira/Confluence | Integraciones aprobadas de lectura; denegaciones de escritura del snippet, helpers y OAuth no cambian por editar CLAUDE.md |
+| Tickets | `addons/ticketing/commands/`; `verdict.md` antes de implementar y `result-dev.md` según workflow local; escrituras del helper sandboxeadas a `tmp/<ticket>/`, nunca Jira |
+| Documentos | `addons/documents/commands/` y skills `publicacion-documental`/`diagramacion-tecnica`; fuente y plantillas completas, wrappers, QA del PDF y editables |
+| UI | Rol `ui-web-designer`, skills UI y MCPs; Stitch es exclusividad operativa por instrucciones, no aislamiento técnico equivalente al gating OpenCode |
+| GitHub | Skill machine-local `github-cuentas-multiples`; no copiar cuentas, owners ni aliases a la guía portable |
+| Dominio/stack de producto | `CLAUDE.md` y skills locales del proyecto; el resumen histórico del rollout no sustituye esas instrucciones |
+
+Los wrappers documentales siguen en `~/.config/opencode/scripts/`:
+`publish_document.py`, `render_diagram.py` y `render_infographic.py` se ejecutan
+con Python, no con Bash. Las skills vigentes contienen argumentos, plantillas y
+runtimes; no invocar Quarto/D2/Pandoc directamente para saltarse esos contratos.
+Conservar fuentes QMD/D2 o las que establezca el flujo aprobado, no editar la
+salida como fuente maestra ni usar capturas como sustituto.
+
+Jira puede usar el helper read-only o Rovo según contexto y disponibilidad. No
+leer credenciales crudas para prepararlos. Si Rovo requiere OAuth, pedir al
+usuario autenticar; no asumir acceso ni buscar una vía que evada la restricción.
+La configuración efectiva y permisos de cada subagente determinan sus tools:
+no inferir que dispone de todos los MCPs del asistente principal.
+
+Los incidentes de hooks de agosto de 2026 permanecen en `CHANGELOG.md` 1.0.1 y
+1.1.2. Son historia, no una garantía actual ni instrucciones contradictorias de
+arranque. Los tests con payloads sintéticos no prueban la invocación de hooks en
+una sesión Claude completa. La documentación oficial de descubrimiento se puede
+consultar en https://code.claude.com/docs/en/sub-agents y
+https://code.claude.com/docs/en/skills; no reemplaza verificar los archivos locales.
+
+## Historia de la migración (Fases 1-6)
+
+Las cantidades y decisiones siguientes son la fotografía histórica del rollout;
+el inventario vigente son los assets reales y sus metadatos, no estas listas.
 
 Incluye:
 - 10 subagentes "base" (`planner`, `code-reviewer`, `reviewer`, `agent-design`, `code-inspector`, `backend-java-developer`, `frontend-web-developer`, `ui-web-designer`, `dev-test`, `merge-conflict-resolver`) + 2 subagentes de Knowledge (`knowledge-curator`, `knowledge-reader`).

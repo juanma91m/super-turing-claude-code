@@ -39,7 +39,7 @@ Entrega esperada:
 - resultado,
 - fallos detectados,
 - validaciones pendientes,
-- si venís por delegación o con handoff explícito: `Contexto recibido: suficiente|ajustado|insuficiente`, `Faltó: ...`, `Sobró: ...`.
+- Señalá solo faltantes de contexto que afecten el resultado.
 
 Skills sugeridas:
 - `analisis-tecnico-evidencia`

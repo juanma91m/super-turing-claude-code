@@ -39,4 +39,4 @@ Entrega esperada:
 - inferencias,
 - riesgos,
 - información faltante,
-- si venís por delegación o con handoff explícito: `Contexto recibido: suficiente|ajustado|insuficiente`, `Faltó: ...`, `Sobró: ...`.
+- Señalá solo faltantes de contexto que afecten el resultado.
