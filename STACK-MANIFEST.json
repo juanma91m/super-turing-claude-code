@@ -133,6 +133,7 @@
       "~/.config/opencode/scripts/knowledge_status.sh",
       "~/.config/opencode/scripts/knowledge_store.sh",
       "~/.config/opencode/scripts/knowledge_seed_global.sh",
+      "~/.config/opencode/scripts/planner_shell.py (ejecutor y hook del planner, una sola política)",
       "~/.opencode/bin/engram",
       "~/.engram/engram.db"
     ]
@@ -150,7 +151,7 @@
       "diagramacion-tecnica", "publicacion-documental", "github-cuentas-multiples",
       "revision-por-etapas", "sdd-tdd-bdd-pragmatico", "memoria-durable-opencode",
       "workflow-ticket-handoff", "memoria-engram-opencode", "knowledge-governance-opencode",
-      "debugging-sistematico", "verificacion-antes-de-cerrar",
+      "debugging-sistematico", "verificacion-antes-de-cerrar", "diseno-ui-web",
       "aune-code-review-eficiente", "aune-higyrus-workspace-ecosystem"
     ],
     "perProjectSkillsSymlinkedToOpencode": "Todas las skills de dominio en <project>/.claude/skills/ de los 9 proyectos de higyrus-workspace son symlinks a <project>/.opencode/skills/ — generadas por addons/higyrus-workspace/scripts/sync-project-overlay.sh.",

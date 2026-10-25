@@ -14,7 +14,7 @@ Objetivo:
 - dejar `tmp/$ARGUMENTS/result-dev.md` al finalizar cuando el proyecto use ese patrón (secciones: Cambio realizado, Deuda técnica detectada, Riesgos/impacto, Validaciones manuales recomendadas).
 
 Reglas:
-- El identificador o este comando no habilitan handoff: si el proyecto no lo adopta para este pedido, implementá desde el alcance acordado sin crear `verdict.md` ni `result-dev.md`.
+- En un proyecto que admite handoff, este comando con ticket concreto es pedido explícito; usarlo y exigir lo requerido antes de implementar. En proyectos sin ese flujo, implementar desde el alcance acordado sin crear `verdict.md` ni `result-dev.md`. Un ID aislado no lo activa.
 - si el proyecto usa `verdict.md` y falta o está incompleto, frená y explicitá qué falta,
 - no recorras `tmp/$ARGUMENTS/` completo salvo necesidad real; priorizá `verdict -> evidencias -> repo_findings -> analysis`,
 - no hagas `git add`, `git commit` ni push,

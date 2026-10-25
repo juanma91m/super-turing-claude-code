@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Addendum del punto 2: PreToolUse del planner reutiliza la guarda/ejecutor Core sin cambiar hooks globales, settings o tools; activación por comando explícito según el proyecto y prioridad del estilo local.
+- `diseno-ui-web` pasa a referencia compartida, no copia; Material UI no sustituye Ant Design/Vaadin u otro sistema local.
+
 - se alinean las correcciones de workflow de OpenCode: salida sin formulario ritual y comandos que no habilitan handoff por identificador ni exigen Rovo a un rol sin la tool. Se conservan allowlists/modelos y el formato nativo de delegación.
 - las cinco reparaciones de metadata globales se reciben por los symlinks existentes, sin copias nuevas ni cambio de MCPs/hooks/settings.
 - se explicita la precedencia del storage local de review y la lectura de contratos requeridos con `Read` cuando el rol no dispone de `Skill`; no se agregan tools ni se cambian presupuestos o procedimiento formal de review.

@@ -13,7 +13,7 @@ Objetivo:
 - identificar problema/objetivo, alcance, estado actual, primeras hipótesis, preguntas abiertas y evidencias iniciales.
 
 Reglas:
-- Un ticket o este comando no habilitan handoff por sí solos: respetá el workflow local; code review solamente no habilita artefactos de implementación.
+- En un proyecto que admite handoff, este comando con ticket concreto es pedido explícito: preparar el handoff aplicable sin repreguntar ni decidir por conveniencia. Un ID aislado o un proyecto review-only no lo habilitan.
 - Rovo es complemento solo si falta contexto material y el caller tiene acceso aprobado; puede pasar evidencia destilada al planner. No exijas Rovo al planner si no está en sus tools ni repitas consultas ya resueltas por helper/evidencia.
 - no implementes código,
 - si el proyecto no usa workflow con `tmp/$ARGUMENTS/`, no lo fuerces,

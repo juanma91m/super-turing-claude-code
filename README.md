@@ -40,6 +40,17 @@ no leerlo al inicio de cada tarea ni referenciarlo mediante `@` desde CLAUDE.md.
 
 ### Controles y contratos que no desaparecen al acortar la guía
 
+El planner usa `planner_shell.py` de Core como ejecutor Bash y PreToolUse de su
+frontmatter. El hook es scoped al subagente, no global; no cambia settings ni
+tools del resto. Solo pasan Git de lectura y helpers declarados por addons.
+Formateo, builds, intérpretes generales, redirección/expansión y comandos compuestos
+se bloquean; las lecturas normales siguen en Read/Grep/Glob. Instalar Core y las
+declaraciones de los addons antes de usar esos helpers. No eludir la guarda si
+falta un recurso: falla cerrado y se deriva la operación al implementador.
+
+`diseno-ui-web` también tiene una sola fuente compartida por symlink a OpenCode;
+el design system del proyecto prevalece sobre cualquier referencia genérica.
+
 | Capacidad | Fuente del detalle / límite |
 |---|---|
 | Secretos | `base/hooks/env-guard.sh` bloquea `.env*` salvo `.env.example`; el deber de no exponerlos sigue explícito aunque un hook no se ejecute |
