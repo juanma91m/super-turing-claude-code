@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Punto 5: planner y agent-design usan recuperación proporcional según herramientas y autoridad; agent-design conserva su prohibición de delegar. El reader mantiene read-only y reusa evidencia del caller; se acota su descripción y se retira la lista genérica de skills sugeridas, sin cambiar modelo/tools/permisos.
+
 - Punto 3: review formal deduplica procedimiento en la skill ya compartida y conserva el fallback `Read`, tools/modelo y advertencia sobre `Write`; comandos respetan requisitos y storage locales, con routing nativo intacto y sin nuevas copias, hooks o permisos.
 
 - Addendum del punto 2: PreToolUse del planner reutiliza la guarda/ejecutor Core sin cambiar hooks globales, settings o tools; activación por comando explícito según el proyecto y prioridad del estilo local.

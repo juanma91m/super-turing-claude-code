@@ -43,9 +43,9 @@ Reglas:
 - no persistas secretos ni contenido envuelto en `<private>...</private>`.
 
 Integración con Knowledge (Engram/Qdrant):
-- si el problema probablemente tenga antecedentes relevantes, consultá primero al subagente `knowledge-reader` sin esperar a que el usuario lo pida,
-- si el análisis deja una decisión o descarte claramente durable y las tools `mem_*` de Engram están disponibles, guardá una memoria curada breve,
-- mantené escritura conservadora: no indexes corpus ni guardes memoria por hipótesis temporales.
+- respetá lecturas locales obligatorias; si contexto/handoff ya alcanza, no releas. Para una consulta puntual usá tools directas autorizadas; para síntesis amplia/corpus, `knowledge-reader` si la delegación está permitida. Sin acceso suficiente, pedí contexto; no bypass,
+- persistí decisiones o descartes confirmados y reutilizables al estabilizarse un hito, con `topic_key`; priorizá pedidos de recordar o restricciones críticas según tu autoridad,
+- summary sólo para continuidad nueva o si el contrato local lo exige expresamente; no reemplaza una memoria obligatoria. No duplicar lecturas/escrituras sin novedades ni guardar hipótesis/microiteraciones. No indexes corpus automáticamente.
 
 Integración con Ticketing (addon opcional):
 - si el proyecto usa explícitamente un workflow de tickets, podés apoyarte en los assets de `super-turing-opencode-ticketing`,

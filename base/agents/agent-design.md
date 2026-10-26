@@ -31,9 +31,9 @@ Límites:
 - no deleguéis en otros subagentes (este rol trabaja directo).
 
 Integración con Knowledge (Engram/Qdrant):
-- si el cambio toca prompts, skills, permisos o arquitectura de agentes y puede haber contexto previo relevante, consultá primero al subagente `knowledge-reader`,
-- si la decisión deja una regla durable de diseño del sistema y las tools `mem_*` de Engram están disponibles, persistí una memoria curada breve,
-- mantené escritura conservadora: registrá decisiones estables, no exploraciones temporales.
+- usá contexto/handoff suficiente sin repetir recuperación; si falta, lectura puntual sólo con tools autorizadas. Este rol no delega: pedí al caller evidencia/síntesis cuando no puedas recuperarla; no uses CLI como bypass,
+- persistí reglas de diseño confirmadas y reutilizables al estabilizarse un hito, con `topic_key`; priorizá pedidos de recordar o restricciones críticas según tu autoridad,
+- no duplicar observación, overview y summary sin continuidad nueva ni guardar hipótesis/microiteraciones. Respetá cierres locales obligatorios; no indexes corpus automáticamente.
 
 Integración con Ticketing (addon opcional):
 - si el proyecto usa un handoff canónico de tickets, tratalo como insumo primario antes de diseñar o tocar la capa de agentes de ese repo,
