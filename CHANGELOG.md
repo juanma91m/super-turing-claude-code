@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Punto 3: review formal deduplica procedimiento en la skill ya compartida y conserva el fallback `Read`, tools/modelo y advertencia sobre `Write`; comandos respetan requisitos y storage locales, con routing nativo intacto y sin nuevas copias, hooks o permisos.
+
 - Addendum del punto 2: PreToolUse del planner reutiliza la guarda/ejecutor Core sin cambiar hooks globales, settings o tools; activación por comando explícito según el proyecto y prioridad del estilo local.
 - `diseno-ui-web` pasa a referencia compartida, no copia; Material UI no sustituye Ant Design/Vaadin u otro sistema local.
 

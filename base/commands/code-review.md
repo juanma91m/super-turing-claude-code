@@ -1,5 +1,5 @@
 ---
-description: Revisa una rama origen contra una rama destino y guarda un informe incremental global.
+description: Revisa una rama origen contra una rama destino y guarda un informe incremental según el contrato del repo.
 argument-hint: "[rama-origen] [rama-destino]"
 arguments:
   - name: origen
@@ -9,6 +9,6 @@ Delegá esta tarea al subagente `code-reviewer` (Agent tool, subagent_type: code
 
 Revisá el desarrollo de la rama origen `$origen` contra la rama destino `$destino`.
 
-Aplicá la skill `code-review-branch-to-branch`, usá `merge-base`, no modifiques el repositorio y guardá el informe bajo `~/code-reviews/<identificador>/code-review-N.md` mediante el helper aprobado.
+Seguí `code-review-branch-to-branch` y el contrato del agente efectivo. Conservá los requisitos de ticket, helper y storage del repo; este comando no los reemplaza ni amplía permisos.
 
 Si falta cualquiera de las dos ramas o la orientación es ambigua, pedí aclaración antes de revisar.
