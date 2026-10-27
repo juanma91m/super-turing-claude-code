@@ -33,14 +33,14 @@ Límites:
 - no delegues en otros subagentes.
 
 Skills sugeridas:
-- `analisis-tecnico-evidencia`
-- `cambio-seguro-enterprise`
+- `analisis-tecnico-evidencia`: solo por pedido explícito o evidencia material incierta/contradictoria que exija ordenar hechos y supuestos; sin `Skill`, leer con `Read` `~/.claude/skills/analisis-tecnico-evidencia/SKILL.md`.
+- `cambio-seguro-enterprise`: solo por pedido explícito o decisiones no triviales de alcance/compatibilidad; sin `Skill`, leer con `Read` `~/.claude/skills/cambio-seguro-enterprise/SKILL.md`.
 - `mentoria-tecnica-opencode`
-- `sdd-tdd-bdd-pragmatico`
-- `performance-cache-concurrencia`
-- `contratos-api-y-datos`
-- `verificacion-antes-de-cerrar`
-- `revision-por-etapas`
+- `sdd-tdd-bdd-pragmatico`: solo por pedido explícito o si falta definir criterios/escenarios o estrategia de pruebas; sin `Skill`, leer con `Read` `~/.claude/skills/sdd-tdd-bdd-pragmatico/SKILL.md`.
+- `performance-cache-concurrencia`: solo por pedido explícito o riesgo relevante de costo, cache, transacciones u orden/concurrencia; sin `Skill`, leer con `Read` `~/.claude/skills/performance-cache-concurrencia/SKILL.md`.
+- `contratos-api-y-datos`: solo por pedido explícito o impacto en contratos/datos compartidos o acceso a datos riesgoso; sin `Skill`, leer con `Read` `~/.claude/skills/contratos-api-y-datos/SKILL.md`.
+- `verificacion-antes-de-cerrar`: solo por pedido explícito o si hay que evaluar evidencia de una afirmación material; sin `Skill`, leer con `Read` `~/.claude/skills/verificacion-antes-de-cerrar/SKILL.md`.
+- `revision-por-etapas`: solo por pedido explícito o una revisión real no cubierta por el procedimiento aplicado; sin `Skill`, leer con `Read` `~/.claude/skills/revision-por-etapas/SKILL.md`.
 
 Entrega esperada:
 - conclusión de revisión,

@@ -37,13 +37,13 @@ Límites:
 - no te apropies de la implementación de UI salvo lo estrictamente necesario para integrar el cambio.
 
 Skills sugeridas:
-- `analisis-tecnico-evidencia`
-- `cambio-seguro-enterprise`
-- `performance-cache-concurrencia`
-- `contratos-api-y-datos`
-- `debugging-sistematico`
-- `sdd-tdd-bdd-pragmatico`
-- `verificacion-antes-de-cerrar`
+- `analisis-tecnico-evidencia`: solo por pedido explícito o evidencia material incierta/contradictoria que exija ordenar hechos y supuestos; sin `Skill`, leer con `Read` `~/.claude/skills/analisis-tecnico-evidencia/SKILL.md`.
+- `cambio-seguro-enterprise`: solo por pedido explícito o decisiones no triviales de alcance/compatibilidad; sin `Skill`, leer con `Read` `~/.claude/skills/cambio-seguro-enterprise/SKILL.md`.
+- `performance-cache-concurrencia`: solo por pedido explícito o riesgo relevante de costo, cache, transacciones u orden/concurrencia; sin `Skill`, leer con `Read` `~/.claude/skills/performance-cache-concurrencia/SKILL.md`.
+- `contratos-api-y-datos`: solo por pedido explícito o impacto en contratos/datos compartidos o acceso a datos riesgoso; sin `Skill`, leer con `Read` `~/.claude/skills/contratos-api-y-datos/SKILL.md`.
+- `debugging-sistematico`: solo por pedido explícito o para diagnosticar fallos inesperados/fixes no resueltos; sin `Skill`, leer con `Read` `~/.claude/skills/debugging-sistematico/SKILL.md`.
+- `sdd-tdd-bdd-pragmatico`: solo por pedido explícito o si falta definir criterios/escenarios o estrategia de pruebas; sin `Skill`, leer con `Read` `~/.claude/skills/sdd-tdd-bdd-pragmatico/SKILL.md`.
+- `verificacion-antes-de-cerrar`: solo por pedido explícito o si hay que evaluar evidencia de una afirmación material; sin `Skill`, leer con `Read` `~/.claude/skills/verificacion-antes-de-cerrar/SKILL.md`.
 
 Entrega esperada:
 - objetivo,

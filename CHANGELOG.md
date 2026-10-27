@@ -2,6 +2,19 @@
 
 ## [Unreleased]
 
+- Punto 6, complemento compartido: la secuencia de dev-test incorpora evidencia vigente, checks faltantes y revalidación de cambios invalidantes, equivalente al Core. Sin cambiar header, tools, memoria, hooks ni entradas de skills ya aprobadas; sin despliegue.
+
+- Punto 6, etapa E: ocho referencias SDD/TDD/BDD condicionadas con Read existente, sin modificar headers, otras entradas A–D ni binding/manifest. Se preservan metodología pragmática y workflows locales; sin despliegue ni cambios de settings/hooks.
+
+- Punto 6, etapa D: cinco referencias a debugging condicionadas al diagnóstico/pedido explícito, con lectura Read existente. Skill Core, binding/manifest, headers y otras entradas A/B/C sin cambios; sin nuevos permisos ni despliegue.
+
+- Punto 6, etapa C: diez entradas de Contratos/datos y Performance/cache/concurrencia quedan condicionadas en cinco roles, con Read existente y headers/entradas A/B intactos. Dos copias pasan a bindings OpenCode declarados, sin cambios de tools, settings/hooks ni overlays y sin despliegue.
+
+- Punto 6, etapa B: ocho referencias a Verificación/Revisión quedan condicionadas en siete roles, con Read existente y sin ampliar tools. Headers, entradas de A y bindings compartidos preexistentes se preservan; documentación alineada, sin despliegue ni cambios de settings/hooks.
+
+- Punto 6, etapa A: se condicionan 21 referencias a Evidencia/Cambio seguro en once roles, con acceso `Read` cuando falta `Skill`; no se amplían tools ni se cambian headers/modelos/hooks.
+- Las dos skills pasan de copias a symlinks al asset instalado de OpenCode, siguiendo el binding existente. La preparación canónica no despliega: el candidato se valida en staging antes de promover Core/Claude. Se preservan otras skills y workflows locales.
+
 - Punto 5: planner y agent-design usan recuperación proporcional según herramientas y autoridad; agent-design conserva su prohibición de delegar. El reader mantiene read-only y reusa evidencia del caller; se acota su descripción y se retira la lista genérica de skills sugeridas, sin cambiar modelo/tools/permisos.
 
 - Punto 3: review formal deduplica procedimiento en la skill ya compartida y conserva el fallback `Read`, tools/modelo y advertencia sobre `Write`; comandos respetan requisitos y storage locales, con routing nativo intacto y sin nuevas copias, hooks o permisos.

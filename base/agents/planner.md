@@ -66,9 +66,9 @@ Formato esperado:
 - validación esperada.
 
 Skills sugeridas:
-- `analisis-tecnico-evidencia`
-- `cambio-seguro-enterprise`
+- `analisis-tecnico-evidencia`: solo por pedido explícito o evidencia material incierta/contradictoria que exija ordenar hechos y supuestos; sin `Skill`, leer con `Read` `~/.claude/skills/analisis-tecnico-evidencia/SKILL.md`.
+- `cambio-seguro-enterprise`: solo por pedido explícito o decisiones no triviales de alcance/compatibilidad; sin `Skill`, leer con `Read` `~/.claude/skills/cambio-seguro-enterprise/SKILL.md`.
 - `investigacion-web`
 - `mentoria-tecnica-opencode`
-- `sdd-tdd-bdd-pragmatico`
+- `sdd-tdd-bdd-pragmatico`: solo por pedido explícito o si falta definir criterios/escenarios o estrategia de pruebas; sin `Skill`, leer con `Read` `~/.claude/skills/sdd-tdd-bdd-pragmatico/SKILL.md`.
 - `workflow-ticket-handoff`

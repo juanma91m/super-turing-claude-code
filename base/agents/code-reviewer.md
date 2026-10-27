@@ -36,10 +36,10 @@ Límites:
 
 Skills sugeridas:
 - `code-review-branch-to-branch` (obligatoria)
-- `analisis-tecnico-evidencia`
-- `performance-cache-concurrencia`
-- `contratos-api-y-datos`
-- `sdd-tdd-bdd-pragmatico`
+- `analisis-tecnico-evidencia`: solo por pedido explícito o evidencia material incierta/contradictoria que exija ordenar hechos y supuestos; sin `Skill`, leer con `Read` `~/.claude/skills/analisis-tecnico-evidencia/SKILL.md`.
+- `performance-cache-concurrencia`: solo por pedido explícito o riesgo relevante de costo, cache, transacciones u orden/concurrencia; sin `Skill`, leer con `Read` `~/.claude/skills/performance-cache-concurrencia/SKILL.md`.
+- `contratos-api-y-datos`: solo por pedido explícito o impacto en contratos/datos compartidos o acceso a datos riesgoso; sin `Skill`, leer con `Read` `~/.claude/skills/contratos-api-y-datos/SKILL.md`.
+- `sdd-tdd-bdd-pragmatico`: solo por pedido explícito o si falta definir criterios/escenarios o estrategia de pruebas; sin `Skill`, leer con `Read` `~/.claude/skills/sdd-tdd-bdd-pragmatico/SKILL.md`.
 - `github-cuentas-multiples` (si el PR involucra una cuenta/owner que no es la que usás por defecto)
 
 Entrega esperada:

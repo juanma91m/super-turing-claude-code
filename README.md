@@ -1,5 +1,10 @@
 # super-turing-claude-code
 
+Dev-test también conserva pruebas ejecutadas/leídas vigentes y ejecuta solo checks
+faltantes o invalidados, sin omitir requisitos locales. Ese criterio vive en el
+agente base, no depende solo de cargar Verificación. El candidato preserva header,
+tools y memoria y requiere promoción autorizada para cambiar sesiones activas.
+
 Source of truth versionado para la migración del ecosistema `super-turing-opencode` hacia Claude Code. Este repo es análogo, en espíritu y disciplina, a `opencode-stack`: define qué se despliega en `~/.claude/`, cómo se sincroniza, y qué queda deliberadamente fuera (secretos, estado machine-local, addons todavía no migrados).
 
 **No reemplaza a OpenCode.** El deploy en `~/.config/opencode/` sigue intacto y funcionando; este repo solo agrega la capa equivalente del lado Claude Code, de forma aditiva.
@@ -50,6 +55,43 @@ falta un recurso: falla cerrado y se deriva la operación al implementador.
 
 `diseno-ui-web` también tiene una sola fuente compartida por symlink a OpenCode;
 el design system del proyecto prevalece sobre cualquier referencia genérica.
+
+`analisis-tecnico-evidencia` y `cambio-seguro-enterprise` también usan una fuente
+compartida por symlink a OpenCode. Sus referencias se activan por necesidad
+específica o pedido explícito, no por rutina ni como pareja fija. Los roles sin
+`Skill` aplican la skill seleccionada con `Read` sobre la ruta indicada, sin nuevas
+tools. Evidencia, incertidumbre, cambio mínimo y validación siguen siendo deberes
+del rol aunque no se carguen estas skills.
+
+Al preparar un candidato sin desplegar, esos enlaces siguen leyendo la versión
+OpenCode instalada: probar el contenido nuevo en staging, promover primero Core y
+luego Claude. No editar el destino activo a través del enlace canónico. Este sync
+no debe ampliarse a settings/hooks/permisos ni reemplazar plantillas compuestas.
+
+Verificación y Revisión por etapas también tienen selección condicional y acceso
+por Read en sus roles existentes. La evidencia ejecutada/leída sigue siendo útil
+mientras esté vigente; un cambio invalidante exige revalidar lo afectado. Revisar
+no sustituye ejecutar pruebas ni viceversa: no cargarlas como paquete ni duplicar
+el review formal. Los checklists, límites del rol y formatos locales se conservan.
+
+Contratos/datos y Performance/cache/concurrencia también comparten fuente OpenCode.
+Sus cinco roles existentes las seleccionan por impacto/riesgo o pedido explícito,
+con Read si no hay Skill; no por el stack ni como paquete fijo. Sus checklists,
+salidas y reglas locales se preservan, incluso donde hay referencias de dominio.
+Como los otros bindings, el candidato se prueba en staging sin editar el activo.
+
+Debugging conserva íntegro su procedimiento compartido. Sus cinco roles existentes
+lo aplican por pedido explícito o para diagnosticar fallos inesperados/fixes no
+resueltos, con Read si falta Skill; no por cada validación normal o rojo esperado
+de TDD cuya causa ya esté evidenciada. Reproducir y validar siguen siendo deberes
+pertinentes; el marco no habilita operaciones fuera del rol.
+
+SDD/TDD/BDD se selecciona por pedido explícito o necesidad de definir criterios,
+escenarios o estrategia de pruebas; sus ocho roles usan Read si falta Skill.
+Una mención de tests no exige otro marco. Los pedidos explícitos y contratos
+locales se respetan; cualquier desvío por costo del harness se explica y acuerda,
+sin habilitar handoffs, tickets o archivos por cargar la skill. El binding existente
+se conserva y el candidato se valida en staging hasta la promoción conjunta.
 
 | Capacidad | Fuente del detalle / límite |
 |---|---|

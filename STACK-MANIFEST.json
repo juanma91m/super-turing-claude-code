@@ -148,6 +148,8 @@
   "crossStackSymlinks": {
     "reason": "Un solo lugar de verdad: estos archivos de Claude Code NO son copias, son symlinks reales hacia los archivos canónicos de OpenCode. Editar el archivo de OpenCode actualiza Claude Code sin correr ningún sync.",
     "globalSkillsSymlinkedToOpencode": [
+      "contratos-api-y-datos", "performance-cache-concurrencia",
+      "analisis-tecnico-evidencia", "cambio-seguro-enterprise",
       "diagramacion-tecnica", "publicacion-documental", "github-cuentas-multiples",
       "revision-por-etapas", "sdd-tdd-bdd-pragmatico", "memoria-durable-opencode",
       "workflow-ticket-handoff", "memoria-engram-opencode", "knowledge-governance-opencode",

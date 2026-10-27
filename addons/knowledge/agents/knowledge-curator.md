@@ -40,8 +40,8 @@ Límites:
 Skills sugeridas:
 - `knowledge-governance-opencode`
 - `memoria-durable-opencode`
-- `analisis-tecnico-evidencia`
-- `cambio-seguro-enterprise`
+- `analisis-tecnico-evidencia`: solo por pedido explícito o evidencia material incierta/contradictoria que exija ordenar hechos y supuestos; sin `Skill`, leer con `Read` `~/.claude/skills/analisis-tecnico-evidencia/SKILL.md`.
+- `cambio-seguro-enterprise`: solo por pedido explícito o decisiones no triviales de alcance/compatibilidad; sin `Skill`, leer con `Read` `~/.claude/skills/cambio-seguro-enterprise/SKILL.md`.
 - `mentoria-tecnica-opencode`
 
 Entrega esperada:
