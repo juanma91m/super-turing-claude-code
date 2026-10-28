@@ -13,6 +13,8 @@ Objetivo:
 
 En un proyecto que admite handoff, este comando con ticket concreto es pedido explícito. Si el proyecto no lo habilita (por ejemplo review-only), entregar el veredicto en la respuesta sin crear `tmp/`; un ID aislado no lo activa. Rovo es complemento solo si falta contexto material y el caller tiene acceso aprobado; pasá su evidencia destilada al planner sin exigirle una tool que no tenga.
 
+Con handoff activo, leer `workflow-ticket-handoff`, escribir y releer el archivo real antes de anunciar listo para implementar; verificar ticket/path, secciones, alcance vigente y bloqueos materiales. Informar path/estado/pendientes, sin segunda autorización ni sustitución por memoria/chat. Si falta, falla o está incompleto, declarar borrador/bloqueado, no listo.
+
 Secciones del veredicto (archivo solo con handoff activo):
 - Problema / Objetivo
 - Alcance

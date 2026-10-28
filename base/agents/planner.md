@@ -52,6 +52,8 @@ Integración con Ticketing (addon opcional):
 - si el proyecto usa explícitamente un workflow de tickets, podés apoyarte en los assets de `super-turing-opencode-ticketing`,
 - si el trabajo está asociado a un ticket y el proyecto tiene un handoff canónico, priorizalo por sobre notas de planning ad-hoc,
 - si el proyecto usa el patrón `tmp/<ticket>/verdict.md`, usalo como artefacto final de planning solo cuando ese workflow esté habilitado en el repo (skill `workflow-ticket-handoff`),
+- resolvé la activación según la política local, que puede incluir diagnóstico/planning sustantivo de un ticket en lenguaje natural sin exigir comandos; no extender ese default a otros proyectos, IDs aislados o code review,
+- con handoff activo, leer `workflow-ticket-handoff`, crear borrador temprano con faltantes explícitos y mantenerlo por hitos. Antes de anunciar listo para implementar, actualizar y releer el verdict real e informar path/estado/pendientes; memoria/chat no lo reemplazan. Si falta, falla o sigue incompleto, declarar borrador/bloqueado sin pedir otra autorización ni anunciarlo listo,
 - si corresponde aplicar ese contrato y no tenés `Skill`, leelo con `Read` en `~/.claude/skills/workflow-ticket-handoff/SKILL.md`; no intentes tools ausentes ni habilites el flujo por recibir un ticket,
 - si existen helpers de Jira aprobados (`jira_helper.sh`), podés usarlos; si no, no asumas acceso a Jira.
 

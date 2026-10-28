@@ -19,3 +19,4 @@ Reglas:
 - si el proyecto no usa workflow con `tmp/$ARGUMENTS/`, devolvé el refresh en tu respuesta en vez de escribir archivos,
 - si algo cambió, dejalo explícito,
 - mantené el foco en información útil para llegar a un `verdict.md` sólido.
+- con handoff activo, leer `workflow-ticket-handoff`, actualizar el borrador de verdict por cambios materiales y releer el archivo real antes del cierre; informar path/estado/pendientes, sin sustituirlo por memoria/chat.
